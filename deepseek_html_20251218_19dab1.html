@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux für Tablets & Convertibles</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary-color: #10b981;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --gray-color: #64748b;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f1f5f9;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #334155 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #cbd5e1;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .card-body ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-body li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .rating {
+            color: #fbbf24;
+            margin: 0.5rem 0;
+        }
+        
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .feature-item {
+            background-color: #e0f2fe;
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .feature-item.green {
+            background-color: #d1fae5;
+        }
+        
+        .feature-item.purple {
+            background-color: #ede9fe;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .comparison-table th {
+            background-color: var(--dark-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: #f1f5f9;
+        }
+        
+        .recommendation {
+            background-color: #e0f2fe;
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+        }
+        
+        /* Ubuntu Touch Section */
+        .ubuntu-touch-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .ubuntu-logo {
+            color: #e95420;
+            margin-right: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #475569;
+            color: #94a3b8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-color);
+                flex-direction: column;
+                padding: 1rem 0;
+                text-align: center;
+                box-shadow: var(--box-shadow);
+            }
+            
+            nav.active ul {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-tablet-alt"></i>
+                <h1>LinuxTablets</h1>
+            </div>
+            <nav id="main-nav">
+                <button class="mobile-menu-btn" id="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul>
+                    <li><a href="#distros">Distributionen</a></li>
+                    <li><a href="#comparison">Vergleich</a></li>
+                    <li><a href="#ubuntu-touch">Ubuntu Touch</a></li>
+                    <li><a href="#recommendation">Empfehlungen</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Linux für Tablets & Convertibles</h1>
+            <p>Die besten Linux-Distributionen für Touch-Geräte und Convertible-Notebooks. Finden Sie das perfekte Linux für Ihr Gerät mit Touchscreen.</p>
+            <a href="#distros" class="cta-button">Distributionen entdecken</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Distributions Section -->
+        <section id="distros">
+            <h2>Empfohlene Linux-Distributionen</h2>
+            <p>Hier finden Sie die besten Linux-Distributionen für Tablets und Convertibles, sortiert nach Einsatzzweck.</p>
+            
+            <div class="card-grid">
+                <!-- Fedora Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Fedora Workstation</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Bestens geeignet für:</strong> Moderne Convertibles mit guter Hardware</p>
+                        <ul>
+                            <li>Touch-optimierte GNOME-Oberfläche</li>
+                            <li>Exzellente Hardware-Unterstützung</li>
+                            <li>Automatische Bildschirmrotation</li>
+                            <li>Integrierter Onscreen-Keyboard</li>
+                        </ul>
+                        <div class="feature-list">
+                            <span class="feature-item">GNOME Desktop</span>
+                            <span class="feature-item green">Touch-Optimiert</span>
+                            <span class="feature-item">Aktuelle Treiber</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ubuntu Touch Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Ubuntu Touch</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Bestens geeignet für:</strong> Reine Tablets & Privacy-Enthusiasten</p>
+                        <ul>
+                            <li>Touch-first Design (Lomiri)</li>
+                            <li>Privatsphäre-fokussiert</li>
+                            <li>Keine Google-Dienste nötig</li>
+                            <li>Android-App-Unterstützung via Anbox</li>
+                        </ul>
+                        <div class="feature-list">
+                            <span class="feature-item green">Touch-First</span>
+                            <span class="feature-item purple">Privacy</span>
+                            <span class="feature-item">Mobile Apps</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Manjaro Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Manjaro KDE Plasma</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Bestens geeignet für:</strong> Anpassbare 2-in-1 Geräte</p>
+                        <ul>
+                            <li>Tablet-Modus wechselbar</li>
+                            <li>Hohe Anpassbarkeit</li>
+                            <li>Windows-ähnliche Oberfläche</li>
+                            <li>Gute Touch-Unterstützung</li>
+                        </ul>
+                        <div class="feature-list">
+                            <span class="feature-item">KDE Plasma</span>
+                            <span class="feature-item green">Tablet-Modus</span>
+                            <span class="feature-item purple">Anpassbar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Table -->
+        <section id="comparison">
+            <h2>Distributionen im Vergleich</h2>
+            <p>Übersicht der wichtigsten Eigenschaften für die Nutzung auf Tablets und Convertibles:</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Distribution</th>
+                        <th>Touch-Optimierung</th>
+                        <th>Hardware-Support</th>
+                        <th>Einfachheit</th>
+                        <th>Beste für</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Fedora Workstation</strong></td>
+                        <td>Sehr gut</td>
+                        <td>Ausgezeichnet</td>
+                        <td>Hoch</td>
+                        <td>Moderne Convertibles</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ubuntu Touch</strong></td>
+                        <td>Ausgezeichnet</td>
+                        <td>Eingeschränkt</td>
+                        <td>Mittel</td>
+                        <td>Reine Tablets</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Manjaro KDE</strong></td>
+                        <td>Gut</td>
+                        <td>Gut</td>
+                        <td>Mittel</td>
+                        <td>Anpassbare 2-in-1 Geräte</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ubuntu/Pop!_OS</strong></td>
+                        <td>Gut</td>
+                        <td>Sehr gut</td>
+                        <td>Hoch</td>
+                        <td>Einsteiger</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Linux Mint</strong></td>
+                        <td>Eingeschränkt</td>
+                        <td>Gut</td>
+                        <td>Hoch</td>
+                        <td>Ältere/schwache Geräte</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Ubuntu Touch Details -->
+        <section id="ubuntu-touch">
+            <div class="ubuntu-touch-section">
+                <h2><i class="fab fa-ubuntu ubuntu-logo"></i> Ubuntu Touch im Detail</h2>
+                
+                <div class="feature-list">
+                    <span class="feature-item"><i class="fas fa-mobile-alt"></i> Telefonie & SMS möglich</span>
+                    <span class="feature-item green"><i class="fas fa-shield-alt"></i> Privacy-fokussiert</span>
+                    <span class="feature-item"><i class="fas fa-box"></i> Anbox für Android-Apps</span>
+                    <span class="feature-item purple"><i class="fas fa-gestures"></i> Gestensteuerung</span>
+                </div>
+                
+                <h3>Unterstützte Geräte:</h3>
+                <ul>
+                    <li><strong>Empfohlen:</strong> Fairphone 3/4, Google Pixel 3a, OnePlus 6</li>
+                    <li><strong>Tablets:</strong> BQ Aquaris M10, Lenovo Yoga Tab 3 (experimentell)</li>
+                    <li><strong>Convertibles:</strong> Microsoft Surface Pro 3/4 (experimentell)</li>
+                </ul>
+                
+                <div class="recommendation">
+                    <h3><i class="fas fa-info-circle"></i> Wichtiger Hinweis</h3>
+                    <p>Ubuntu Touch ist <strong>kein klassisches Desktop-Linux</strong> mit allen Anwendungen. Es nutzt hauptsächlich spezielle (meist mobile) Apps oder Libertine-Container für einige Desktop-Apps. Für reine Tablets und Privacy-Enthusiasten ideal, für Convertibles mit Desktop-Nutzung ist Fedora mit GNOME die bessere Wahl.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommendations -->
+        <section id="recommendation">
+            <h2>Kaufempfehlungen</h2>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Für reines Tablet-Erlebnis</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Ubuntu Touch (UBports)</strong></p>
+                        <ul>
+                            <li>Touch-First Design</li>
+                            <li>Intuitive Gestensteuerung</li>
+                            <li>Leichtgewichtiges System</li>
+                            <li>Perfekt für Medienkonsum & Web</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Für Convertibles</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Fedora Workstation</strong></p>
+                        <ul>
+                            <li>Beste GNOME-Integration</li>
+                            <li>Exzellente Hardware-Unterstützung</li>
+                            <li>Automatische Rotation & Touch</li>
+                            <li>Voller Desktop + Touch-Optimierung</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Für Einsteiger</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Ubuntu / Pop!_OS</strong></p>
+                        <ul>
+                            <li>Benutzerfreundlich</li>
+                            <li>Große Community</li>
+                            <li>Gute Treiberunterstützung</li>
+                            <li>Touch-Gesten nachrüstbar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recommendation">
+                <h3><i class="fas fa-lightbulb"></i> Vor der Installation beachten:</h3>
+                <ul>
+                    <li>Immer einen <strong>Live-USB</strong> testen (Touch, Rotation, WLAN, Audio)</li>
+                    <li><strong>Gerätespezifische Recherche</strong> durchführen (z.B. "Surface Pro 6 Linux")</li>
+                    <li>Onscreen-Keyboard (<code>onboard</code> oder <code>GNOME Keyboard</code>) testen</li>
+                    <li>Bei Ubuntu Touch: Auf <a href="https://devices.ubports.com" target="_blank">devices.ubports.com</a> Kompatibilität prüfen</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LinuxTablets</h3>
+                    <p>Informationsquelle für Linux auf Tablets, Convertibles und Touch-Geräten. Unabhängige Empfehlungen und Anleitungen.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Nützliche Links</h3>
+                    <ul>
+                        <li><a href="https://ubports.com" target="_blank">Ubuntu Touch (UBports)</a></li>
+                        <li><a href="https://fedoraproject.org" target="_blank">Fedora Project</a></li>
+                        <li><a href="https://manjaro.org" target="_blank">Manjaro Linux</a></li>
+                        <li><a href="https://linuxmint.com" target="_blank">Linux Mint</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Weitere Ressourcen</h3>
+                    <ul>
+                        <li><a href="#distros">Distributionen vergleichen</a></li>
+                        <li><a href="#ubuntu-touch">Ubuntu Touch Details</a></li>
+                        <li><a href="#recommendation">Kaufempfehlungen</a></li>
+                        <li><a href="#comparison">Vergleichstabelle</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 LinuxTablets.info | Diese Seite dient nur zu Informationszwecken</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                }
+            });
+        });
+        
+        // Highlight current section in navigation
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    document.querySelector(`nav a[href="#${sectionId}"]`)?.classList.add('active');
+                } else {
+                    document.querySelector(`nav a[href="#${sectionId}"]`)?.classList.remove('active');
+                }
+            });
+        });
+        
+        // Add active class to nav items
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('nav a').forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
